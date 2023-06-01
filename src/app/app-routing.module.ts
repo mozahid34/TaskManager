@@ -4,7 +4,7 @@ import { CreateTaskComponent } from './create-task/create-task.component';
 import { ViewTaskComponent } from './view-task/view-task.component';
 
 const routes: Routes = [
-  {path:"", redirectTo:"view", pathMatch:"full"},
+  {path:"", redirectTo:"create", pathMatch:"full"},
   {path:"create", component:CreateTaskComponent},
   {path:"view", component:ViewTaskComponent},
 ];

@@ -1,25 +1,45 @@
 <div class="container mt-5">
-    <button (click)="showAll()" class="btn btn-warning mb-2">Reload</button>
+    <h5> Total Task: {{alltasks.length}}</h5>
+<ng-container>
+
+    <!-- Table o Data -->
+    <h2 *ngIf="alltasks.length === 0" class="text-info">Hurray!!! You have no task</h2>
+    
+    <table *ngIf="alltasks.length > 0" class="table table-striped">
+        <thead>
+          <tr class="bg-primary">
+            <th scope="col">SL. No</th>
+            <th scope="col">Task Name</th>
+            <th scope="col">Submitted By</th>
+            <th scope="col">Task Details</th>
+            <th scope="col">Date</th>
+            <th scope="col">Locations</th>
+            <th scope="col">Category</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let tsk of alltasks; let i=index">
+            <th scope="row">{{i+1}}</th>
+            <td>{{tsk.taskname}}</td>
+            <td>{{tsk.sbname}}</td>
+            <td>{{tsk.taskdetails}}</td>
+            <td>{{tsk.datentime}}</td>
+            <td>{{tsk.place}}</td>
+            <td> <span> {{tsk.categories}}</span></td>
+            <td><button (click)="onDel(i)" class="btn btn-danger btn-sm mx-1">&times;</button>
+              <button (click)="onEdit()" class="btn btn-success btn-sm mx-1">&eacute;</button>
+            </td>
+            
+          </tr>
+        </tbody>
+      </table>
+    <!-- Table of Data End -->
+</ng-container>
+
     
 
     <div>
-        <div class="row">
-            <div *ngFor="let tsk of alltasks; " class="col col-md-4">
-                <div class="card m-2" style="width: 18rem;">
-                    <div class="card-body">
-                      <h5 class="card-title">{{tsk.taskname}} </h5>
-                      <h6 class="card-subtitle mb-2 text-muted">Submitted By:{{tsk.sbname}} </h6>
-                      <p class="card-text">{{tsk.taskdetails}} </p>
-                      <p class="card-text">Date: {{tsk.datentime}} </p>
-                      <p class="card-text">Location: {{tsk.place}} </p>
-                      <p class="card-text"> category: <span class="bg-primary" :[ngClass]="{'bg-success': tsk.categories == 'Todo'}" >{{tsk.categories}}</span> </p>
-
-                      <a (click)="onDel(tsk.id)" class="btn btn-danger">Delete Task</a>
-                     
-                    </div>
-                  </div>
-
-            </div>
-        </div>
+        
     </div>
 </div>

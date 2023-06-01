@@ -1,9 +1,15 @@
-<div class="container mt-5">
+<div class="container  mt-5" >
+  <!-- Test -->
+  <div>
+    <h6 class=" p-2 rounded text-primary font-weight-bold text-end mx-5 "> <span class="bg-info rounded p-2 font-weight-bold text-lg"> Total Task( {{tasks.length}} )</span></h6>
+  </div>
+  <!-- Test -->
     <form [formGroup]="createForm" (ngSubmit)="onSubmit()" >
         <div class="row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Task Title</label>
-            <input formControlName="taskname" type="text" class="form-control" id="input1" placeholder="Task Name">
+            <input formControlName="taskname" type="text" class="form-control" id="input1" name="name" placeholder="Task Name" required>
+          
           </div>
           <div class="form-group col-md-6">
             <label for="inputPassword4">Task Issue Date</label>
@@ -28,11 +34,28 @@
           </div>
           <div class="form-group col-md-2">
             <label for="inputZip">Summitted By</label>
-            <input formControlName="sbname" type="text" class="form-control" placeholder="Your Name" id="input0">
+            <input formControlName="sbname" type="text" class="form-control" placeholder="Your Name" id="input0" name="user name"  >
           </div>
         </div>
         <div class="col-md-12 text-center">
-        <button type="submit" class="btn btn-primary col-md-6 pull-center mt-5">Submit</button>
+          <div class="bg-warning mt-2" *ngIf="err">
+           <h6 class="bg-warning rounded text-danger">{{errMsg}}</h6>
+
+          </div>
+        <button type="submit" class="btn btn-primary pull-center col-md-6 mt-5 me-2">Add Task</button>
+        
     </div>
       </form>
+
+      <!-- Data show here  -->
+      <button *ngIf="tasks.length > 0" type="btn" (click)="showTask()" class="btn btn-success pull-center mt-5"> {{view ? "Hide Task" : "Show Task"}} </button>
+      <div *ngIf="view == true" class="row">
+
+        <div>
+          <app-view-task (emitedTask)="getData($event)" [alltasks] = "tasks" ></app-view-task>
+        </div>
+
+       
+    </div>
+      <!-- Data show here  -->
 </div>

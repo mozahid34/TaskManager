@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, createComponent } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { CreateTaskComponent } from './create-task/create-task.component';
@@ -22,9 +22,13 @@ import { HttpClientModule } from '@angular/common/http';
     NgbModule,
     ReactiveFormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbToastModule
   ],
-  providers: [],
+  providers: [
+    CreateTaskComponent,
+    ViewTaskComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
